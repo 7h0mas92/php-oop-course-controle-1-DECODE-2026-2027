@@ -3,7 +3,7 @@
 ## Table of content <!-- omit in toc -->
 
 <!--toc:start-->
-- [OOP PHP exercicex <!-- omit in toc -->](#oop-php-exercicex-omit-in-toc)
+- [Control 1 <!-- omit in toc -->](#control-1-omit-in-toc)
   - [Table of content <!-- omit in toc -->](#table-of-content-omit-in-toc)
   - [About this exercice](#about-this-exercice)
   - [Pre requisite](#pre-requisite)
@@ -13,6 +13,7 @@
       - [How it works](#how-it-works)
     - [How to submit your solutions](#how-to-submit-your-solutions)
   - [Exercices](#exercices)
+    - [Exercice 0 - preliminary](#exercice-0-preliminary)
     - [Exercice 1 /5](#exercice-1-5)
     - [Exercice 2 /3](#exercice-2-3)
     - [Exercice 3 /5](#exercice-3-5)
@@ -48,9 +49,9 @@ Then execute the following commands :
 
 ```bash
 
-git clone https://github.com/<your-username>/php-oop-course-controle-1-DECODE-RD-2025-2026
+git clone https://github.com/<your-username>/php-oop-course-controle-1-DECODE-2026-2027
 
-cd php-oop-course-controle-1-DECODE-RD-2025-2026/php-framework
+cd php-oop-course-controle-1-DECODE-2026-2027
 
 docker compose up -d --build
 
@@ -59,7 +60,7 @@ docker compose exec php-framework composer install
 docker compose exec php-framework composer dump-autoload
 ```
 
-The application is now available on your machine at `127.0.0.1:8080` . To test if it is working correctly, go to `127.0.0.1:8080/test`. A page with `Test Controller` written on it should be displayed.
+The application is now available on your machine at `127.0.0.1:8080` . To test if it is working correctly, go to `127.0.0.1:8080/`. A page with `Success` written on it should be displayed.
 
 ## Objectives
 
@@ -71,7 +72,7 @@ This is a simple framework writtent in PHP and using OOP. It contains a router, 
 
 In order to create a new route, add its configuration in the `/app/config/routes.json` . You can reuse the template of the `/test` route. You can adjust the route `uri`, what `HTTP methods` are accepted, and what `controller` will be used to handle the request.
 
-A controller must extends the `App/Lib/Controller/AbstractController` class. It must be saved in the `app/src/Controllers` folder. You can save a controller in a subfolder inside it.
+A controller must extends the `App/Controller/AbstractController` class. It must be saved in the `app/src/Controllers` folder. You can save a controller in a subfolder inside it.
 
 ### How to submit your solutions
 
@@ -90,6 +91,12 @@ The routes will only accept data in the `application/json` format.
 Use the `header` of the request to verify this format. 
 
 Use the `header` in the response to apply this format.
+
+For each feature, you must extensibly validate the input and output datas as there are no form validations and no SQL database.
+
+### Exercice 0 - preliminary
+
+In order to differenciate between the business code you'll add to your application and the technical framework code, migrate all the framework related files in a new `lib` folders. This folder can be stored in the `app/src` folder or directly in the `app` folder. Check that nothing is broken before starting the next exercice.
 
 ### Exercice 1 /5
 

@@ -1,0 +1,11 @@
+services:
+  php-framework-php:
+    container_name: php-framework-php
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/var/www/html
+      - ./log:/var/log/apache2/
+    ports:
+      - 8080:80
