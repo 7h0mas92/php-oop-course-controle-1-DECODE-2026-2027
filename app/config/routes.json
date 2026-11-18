@@ -3,5 +3,10 @@
     "uri": "/",
     "method": "GET",
     "controller": "HomeController"
+  },
+  {
+    "uri": "/contact",
+    "method": "POST",
+    "controller": "Contact\\CreateContactController"
   }
 ]
