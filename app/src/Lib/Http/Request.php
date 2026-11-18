@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace App\Lib\Http;
 
 class Request {
     private readonly string $uri;
@@ -29,5 +29,3 @@ class Request {
         return $this->headers;
     }
 }
-
-?>

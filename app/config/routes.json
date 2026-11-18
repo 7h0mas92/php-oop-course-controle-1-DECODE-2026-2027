@@ -1,6 +1,7 @@
 [
   {
     "uri": "/",
-    "method": "GET"
+    "method": "GET",
+    "controller": "HomeController"
   }
 ]
