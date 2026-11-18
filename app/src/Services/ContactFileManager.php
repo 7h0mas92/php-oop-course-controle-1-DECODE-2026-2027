@@ -71,6 +71,22 @@ class ContactFileManager {
         return $this->readFile($path);
     }
 
+    // modifie un contact existant et renvoie le contact mis à jour
+    public function update(string $fileName, array $data): array
+    {
+        $contact = $this->findOne($fileName);
+
+        foreach ($data as $key => $value) {
+            $contact[$key] = $value;
+        }
+
+        $contact['dateOfLastUpdate'] = time();
+
+        file_put_contents(self::CONTACTS_FOLDER . $fileName, json_encode($contact, JSON_PRETTY_PRINT));
+
+        return $contact;
+    }
+
     // empêche de lire un fichier en dehors du dossier (ex: ../../config/routes.json)
     private function isValidFileName(string $fileName): bool
     {
