@@ -21,6 +21,22 @@ class Request {
         return $this->uri;
     }
 
+    // renvoie l'uri sans les paramètres (ex: /contact?file=abc donne /contact)
+    public function getPath(): string
+    {
+        return parse_url($this->uri, PHP_URL_PATH);
+    }
+
+    // renvoie la valeur d'un paramètre de l'url (ex: ?file=abc), ou null s'il n'existe pas
+    public function getQueryParam(string $name): ?string
+    {
+        if (isset($_GET[$name]) === false || is_string($_GET[$name]) === false) {
+            return null;
+        }
+
+        return $_GET[$name];
+    }
+
     public function getMethod(): string
     {
         return $this->method;

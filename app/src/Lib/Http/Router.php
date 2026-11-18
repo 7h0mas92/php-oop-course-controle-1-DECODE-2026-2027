@@ -30,6 +30,10 @@ class Router {
             }
             $methodFoundFlag = true;
 
+            if($this->checkQueryParams($request, $route) === false) {
+                continue;
+            }
+
             try {
                 $controllerInstance = $this->getValidControllerInstance($route['controller']);
 
@@ -70,7 +74,22 @@ class Router {
     }
 
     private function checkUri(Request $request, string $uri): bool {
-        return $request->getUri() === $uri;
+        return $request->getPath() === $uri;
+    }
+
+    // si la route demande des paramètres (ex: "query": ["file"]), on vérifie qu'ils sont présents dans l'url
+    private function checkQueryParams(Request $request, array $route): bool {
+        if(array_key_exists('query', $route) === false) {
+            return true;
+        }
+
+        foreach($route['query'] as $param) {
+            if($request->getQueryParam($param) === null) {
+                return false;
+            }
+        }
+
+        return true;
     }
     
     private function checkMethod(Request $request, string $method): bool {
