@@ -12,4 +12,9 @@ $response = $router->main($request);
 
 // on envoie la réponse au client
 http_response_code($response->statusCode);
+
+foreach ($response->headers as $name => $value) {
+    header($name . ': ' . $value);
+}
+
 echo $response->content;
