@@ -36,4 +36,49 @@ class ContactFileManager {
 
         return $fileName;
     }
+
+    // renvoie tous les contacts enregistrés, du plus ancien au plus récent
+    public function findAll(): array
+    {
+        $contacts = [];
+        $files = glob(self::CONTACTS_FOLDER . '*.json');
+        sort($files);
+
+        foreach ($files as $file) {
+            $contact = $this->readFile($file);
+
+            if ($contact !== null) {
+                $contacts[] = $contact;
+            }
+        }
+
+        return $contacts;
+    }
+
+    // lit un fichier et vérifie qu'il contient bien un contact, sinon renvoie null
+    private function readFile(string $path): ?array
+    {
+        $content = file_get_contents($path);
+        $contact = json_decode($content, true);
+
+        if (is_array($contact) === false) {
+            return null;
+        }
+
+        $expectedKeys = ['email', 'subject', 'message', 'dateOfCreation', 'dateOfLastUpdate'];
+
+        foreach ($expectedKeys as $key) {
+            if (array_key_exists($key, $contact) === false) {
+                return null;
+            }
+        }
+
+        return [
+            'email' => $contact['email'],
+            'subject' => $contact['subject'],
+            'message' => $contact['message'],
+            'dateOfCreation' => $contact['dateOfCreation'],
+            'dateOfLastUpdate' => $contact['dateOfLastUpdate'],
+        ];
+    }
 }
