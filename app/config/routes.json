@@ -12,6 +12,12 @@
   {
     "uri": "/contact",
     "method": "GET",
+    "query": ["file"],
+    "controller": "Contact\\GetContactController"
+  },
+  {
+    "uri": "/contact",
+    "method": "GET",
     "controller": "Contact\\ListContactController"
   }
 ]
