@@ -55,6 +55,32 @@ class ContactFileManager {
         return $contacts;
     }
 
+    // renvoie un contact à partir du nom de son fichier, ou null s'il n'existe pas
+    public function findOne(string $fileName): ?array
+    {
+        if ($this->isValidFileName($fileName) === false) {
+            return null;
+        }
+
+        $path = self::CONTACTS_FOLDER . $fileName;
+
+        if (file_exists($path) === false) {
+            return null;
+        }
+
+        return $this->readFile($path);
+    }
+
+    // empêche de lire un fichier en dehors du dossier (ex: ../../config/routes.json)
+    private function isValidFileName(string $fileName): bool
+    {
+        if ($fileName !== basename($fileName)) {
+            return false;
+        }
+
+        return preg_match('/^[0-9]+_.+\.json$/', $fileName) === 1;
+    }
+
     // lit un fichier et vérifie qu'il contient bien un contact, sinon renvoie null
     private function readFile(string $path): ?array
     {
