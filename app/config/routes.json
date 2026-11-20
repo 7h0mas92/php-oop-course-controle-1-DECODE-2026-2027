@@ -25,5 +25,11 @@
     "method": "PATCH",
     "query": ["file"],
     "controller": "Contact\\UpdateContactController"
+  },
+  {
+    "uri": "/contact",
+    "method": "DELETE",
+    "query": ["file"],
+    "controller": "Contact\\DeleteContactController"
   }
 ]
