@@ -87,6 +87,11 @@ class ContactFileManager {
         return $contact;
     }
 
+    public function delete(string $fileName): void
+    {
+        unlink(self::CONTACTS_FOLDER . $fileName);
+    }
+
     // empêche de lire un fichier en dehors du dossier (ex: ../../config/routes.json)
     private function isValidFileName(string $fileName): bool
     {
